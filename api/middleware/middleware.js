@@ -23,19 +23,29 @@ const validatebody = (req, res, next) => {
     next()
 }
 
-// const validateId = (req, res, next) => {
-    
-// }
+const validateProjectId = (req, res, next) => {
+    const { id } = req.params
+    Projects.get(id).then(id => {
+        !id?
+        res.status(404).json({message:"id not found"}) :
+        req.id = id
+        next()
+    })
+    .catch(err => {
+        res.status(500).json({message:`server error: ${err.message}`})
+    })
+}
 
 const validateProjectBody = (req, res, next) => {
     const { name, description, completed } = req.body
     !name || !description || !completed ?
-    res.status(400).json({message:"fields are required"}) :
+    res.status(400).json({message:"fields are required for project"}) :
     next()
 }
 
 module.exports = {
     validateId,
     validatebody,
+    validateProjectId,
     validateProjectBody
 }
