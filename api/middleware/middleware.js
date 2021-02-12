@@ -7,7 +7,7 @@ const validateId = (req, res, next) => {
     const { id } = req.params
     Actions.get(id).then(id => {
         !id?
-        res.status(404).json({message:"user not found"}) :
+        res.status(404).json({message:"id not found"}) :
         req.id = id
         next()
     })
@@ -21,18 +21,21 @@ const validatebody = (req, res, next) => {
     !project_id || !description || !notes || !completed ?
     res.status(400).json({message:"fields are required"}) :
     next()
-    
 }
 
 // const validateId = (req, res, next) => {
     
 // }
 
-// const validateId = (req, res, next) => {
-    
-// }
+const validateProjectBody = (req, res, next) => {
+    const { name, description, completed } = req.body
+    !name || !description || !completed ?
+    res.status(400).json({message:"fields are required"}) :
+    next()
+}
 
 module.exports = {
     validateId,
-    validatebody
+    validatebody,
+    validateProjectBody
 }
