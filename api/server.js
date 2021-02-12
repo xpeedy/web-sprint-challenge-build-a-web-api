@@ -5,6 +5,7 @@ const actionsRouter = require("./actions/actions-router")
 const projectsRouter = require("./projects/projects-router")
 const mw = require("./middleware/middleware")
 
+server.use(express.json()) // need this to use req.body
 server.use("/api/projects", projectsRouter)
 server.use("/api/actions", actionsRouter)
 // Complete your server here!

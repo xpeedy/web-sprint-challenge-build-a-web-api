@@ -18,5 +18,5 @@ const server = require("./api/server")
 PORT = 5000
 
 server.listen(PORT,() => {
-    console.log(`Server runnig on port: ${PORT}`)
+    console.log(`Server runnig on port: http://localhost:${PORT}`)
 })
